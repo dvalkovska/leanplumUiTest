@@ -1,0 +1,53 @@
+basePackage com.leanplum.sdt
+
+StartObject Start
+	TestMethod start()
+		StateTransition NewAppState(Login)		
+
+TestObject Login
+    TestMethod verifyLoginFailure(String username="Administrator", String password="IllegalPassword", String provider)
+	TestMethod login(String username="Administrator", String password="Administrator")
+		StateTransition SetAppState(SideNavigationBar)
+
+TestObject SideNavigationBar
+	TestMethod selectCampaignsTab() Returns CampaignsTab
+		StateTransition AddAppState(CampaignsTab)
+	
+TestObject CampaignsTab
+	TestMethod newCampaign() Returns NewCampaignDialog
+		StateTransition AddAppState(NewCampaignDialog), RemoveAppState(CampaignsTab)
+	TestMethod openCampaign(String campaignName) Returns NewCampaignDialog
+		StateTransition AddAppState(NewCampaignDialog), RemoveAppState(CampaignsTab)
+	TestMethod verifyCampaignInList(String campaignName, Boolean isInList)
+	TestMethod verifyCampaignChannel(String campaignName, String channel)
+	TestMethod verifyCampaignCreatedBy(String campaignName, String name)
+	TestMethod verifyCampaignUsers(String campaignName, String number)
+	TestMethod verifyCampaignIsActive(String name, Boolean isActive)
+
+TestObject CampaignSettingsDialog
+	TestMethod setName(String name)
+	TestMethod clickSave()
+		StateTransition RestoreAppState
+	TestMethod clickCancel()
+		StateTransition RestoreAppState
+	TestMethod clickClose()
+		StateTransition RestoreAppState
+		
+TestObject NewCampaignDialog
+	TestMethod goToCampaigns() Returns CampaignsTab
+		StateTransition AddAppState(CampaignsTab), RemoveAppState(NewCampaignDialog)
+	TestMethod setNotificationMessage(String message)
+	TestMethod verifyCampaignName(String name)
+	TestMethod selectGoal(String goal)
+	TestMethod verifyGoalIsSelected(String goal, Boolean isSelected)
+	TestMethod selectNext()
+	TestMethod verifySelectedStep(String stepName)
+	TestMethod setDeliveryMethodScheduled(String date)
+	TestMethod setActionPushNotification()
+	TestMethod startCampaign()
+	TestMethod renameCampaign() Returns CampaignSettingsDialog
+		StateTransition NewAppState()
+	TestMethod verifyStartCampaignButtonIsEnabled(Boolean isEnabled)
+	TestMethod verifyScheduledDate(String date)
+	TestMethod endCampaign()
+	TestMethod verifyCampaignFinished()

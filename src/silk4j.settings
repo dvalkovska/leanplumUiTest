@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recorderProject version="19.0">
+  <applicationConfiguration>
+    <browserType>GoogleChrome</browserType>
+    <baseStateInfo>
+      <locator>//BrowserApplication</locator>
+      <url>https://www.leanplum.com/dashboard/access?continue=%2Fdashboard#login</url>
+    </baseStateInfo>
+  </applicationConfiguration>
+  <agentOptions>
+    <entry>
+      <string>OPT_ASSET_NAMESPACE</string>
+      <string>leanplumUiTests</string>
+    </entry>
+  </agentOptions>
+</recorderProject>
