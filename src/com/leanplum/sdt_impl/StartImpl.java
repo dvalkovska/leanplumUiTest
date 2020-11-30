@@ -44,7 +44,7 @@ public class StartImpl implements Start {
 				browser.maximize();
 
 				desktop.setOption("OPT_MOUSE_INPUT_DELAY", 5000);
-				desktop.setOption("OPT_WAIT_RESOLVE_OBJDEF", 25000);
+				desktop.setOption("OPT_WAIT_RESOLVE_OBJDEF", 10000);
 				desktop.setOption("OPT_OBJECT_ENABLED_TIMEOUT", 10000);
 			}
 

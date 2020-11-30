@@ -21,7 +21,7 @@ public class LoginImpl implements Login {
 	public void verifyLoginFailure(String username, String password,
 			String message) {
 		loginUser(username, password);
-		Assert.assertTrue(desktop.exists("//form//DIV[@textContents='"+message+"*']"));		//webdriver locator: "By.xpath("(//div[starts-with(text(),\"+message)])")"
+		Assert.assertTrue(desktop.exists("//form//DIV[@textContents='"+message+"*']"));		//webdriver locator: "By.xpath("(//form//div[starts-with(text(),\"+message)])")"
 	}
 
 	@Implemented
@@ -40,12 +40,10 @@ public class LoginImpl implements Login {
 		DomTextField pass = desktop.<DomTextField>find("//INPUT[@name='password']");	//webdriver locator: "By.xpath("(//input[@name=\"password\"])")"
 		DomButton login = desktop.<DomButton>find("//BUTTON[@textContents='Log in']");	//webdriver locator: "By.xpath("//button[text()=\"Log in\"]")"
 
-		desktop.waitForObject(login.getLocator(), 5);
 		email.clearText();
 		email.typeKeys(username);
 		pass.clearText();
 		pass.typeKeys(password);
-		desktop.waitForObject(login.getLocator(), 5);
 		login.click();
 	}
 }
